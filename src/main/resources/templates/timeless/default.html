@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Timeless</title>
+    <link rel="stylesheet" href="/webjars/foundation-sites/6.4.3/dist/css/foundation.min.css">
+    <link rel="stylesheet" href="/main.css">
+  </head>
+  <body>
+    <section>
+      <header>
+        <h1>Timeless</h1>
+      </header>
+      <form method="post" action="/entries">
+        <table>
+          <thead>
+            <tr>
+              <th width="200">Week of</th>
+              <th width="80" class="text-center">Mon</th>
+              <th width="80" class="text-center">Tue</th>
+              <th width="80" class="text-center">Wed</th>
+              <th width="80" class="text-center">Thu</th>
+              <th width="80" class="text-center">Fri</th>
+              <th width="80" class="text-center">Total</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="date" placeholder="mm/dd/yyyy" required value="{{ current.formattedDate }}" name="dateFromString"></td>
+              {{#current.hours}}
+                <td><input required type="number" value="{{ . }}" name="hours"></td>
+              {{/current.hours}}
+              <td class="text-center">{{ current.total }}</td>
+              <td>
+                <button class="button success" name="action" value="update">Update</button>
+                <button class="button secondary is-without-margin" name="action" value="complete">Submit</button>
+              </td>
+            </tr>
+          </tbody>
+          <tbody>
+            {{#entries}}
+              <tr>
+                <td class="text-right">{{ formattedDate }}</td>
+                {{#hours}}
+                  <td class="text-center">{{ . }}</td>
+                {{/hours}}
+                <td class="text-center">{{ total }}</td>
+                <td></td>
+              </tr>
+            {{/entries}}
+          </tbody>
+        </table>
+      </form>
+    </section>
+    <script src="/webjars/jquery/3.2.1/dist/jquery.min.js"></script>
+    <script src="/webjars/what-input/4.2.0/dist/what-input.min.js"></script>
+    <script src="/webjars/foundation-sites/6.4.3/dist/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>
