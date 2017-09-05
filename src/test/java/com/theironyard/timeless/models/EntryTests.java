@@ -51,6 +51,19 @@ public class EntryTests {
 		assertThat(isSubmitted).isFalse();
 	}
 	
+	@Test
+	public void test_setDateAndGetDateWorkTogether() {
+		// Arrange
+		Date now = new Date();
+		entry.setDate(now);
+		
+		// Act
+		Date actual = entry.getDate();
+		
+		// Assert
+		assertThat(actual).isEqualTo(now);
+	}
+	
 	@SuppressWarnings("deprecation")
 	@Test
 	public void test_setDateFromString_sets_date_from_mmddyyyy() {
